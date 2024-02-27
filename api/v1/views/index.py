@@ -1,11 +1,17 @@
-from flask import jsonify
+#!/usr/bin/python3
+""" returns json statuses for app_views routes  """
 from api.v1.views import app_views
+from flask import jsonify
+from models import storage
 
-app_views.route("/status", strict_slashes = False)
-def return_status():
-  jsonify({"status":"OK"})
 
-  @app_views.route('/stats', methods=['GET'], strict_slashes=False)
+@app_views.route('/status', strict_slashes=False)
+def stat_return():
+    """ return json status: OK """
+    return jsonify({"status": "OK"})
+
+
+@app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def stat_count():
     """ endpoint that retrieves the # of each objects by type """
     count_stats = {
